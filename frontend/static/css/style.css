@@ -1,0 +1,27 @@
+.app {
+    --primary-color: #CDDC39;
+    --primary-color-rgba : rgba(205, 220, 57);
+    --primary-color-rgba-tranparent: rgba(205, 220, 57, 0.3);
+    --gray-color-tranparent: rgba(240, 240, 240, 0.5);
+}
+
+.job-component {
+    
+}
+
+.job-status {
+    background: #C1DF1F;
+    font-weight: bold;
+}
+
+.job-organization-picture{
+    width: 75px;
+    height: 75px;
+}
+
+.job-headline-title {
+    
+    line-clamp: 2;
+    overflow: hidden;
+    white-space: normal;
+}

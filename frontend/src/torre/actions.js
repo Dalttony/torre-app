@@ -1,0 +1,26 @@
+
+import {TYPE} from './constants';
+import service from './services';
+import { sendRequest, 
+    dismissRequest, 
+    successRequest,
+    failureRequest,
+    } from '../common/actions';
+
+export const loadJobs = () => {
+    return (dispatch, getState) => {
+        dispatch(sendRequest());
+
+        service.loadJobs((response)=>{
+            if (response.status = 200){
+                dispatch({type:TYPE.SET_DATA_RESULT, payload:{jobs:response.data.data.results}});
+            }else{
+                //something wrong happen
+            }
+        },
+        (error) =>{
+            console.log(error);
+        }
+        );
+    }
+}
