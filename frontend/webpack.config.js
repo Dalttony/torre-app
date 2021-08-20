@@ -21,7 +21,7 @@
                       //specify that we will be dealing with React code
                       presets: ['@babel/preset-react'] 
                   }
-             }, type: 'javascript/auto',
+             }, 
              {
               test: /\.m?js$/,
               exclude:/node_modules/,
@@ -51,8 +51,10 @@
                      outputPath: 'fonts/'
                    }
                  }
-               ]
-             }
+               ],
+               type: "javascript/auto",
+             },
+            
           ]
     }
  }

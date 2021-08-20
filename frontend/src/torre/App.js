@@ -5,6 +5,7 @@ import PropTypes  from 'prop-types';
 import { connect } from 'react-redux'
 import JobComponent from './components/Job.react';
 import {loadJobs} from './actions';
+import { ReactReduxContext } from 'react-redux'
 
 class AppComponent extends React.Component {
     constructor(props){
@@ -16,6 +17,10 @@ class AppComponent extends React.Component {
 			dispatch(loadJobs());
     }
 
+    showUserPerfil(id){
+      
+      console.log(id);
+    }
     render(){
       const {items, jobsEntities} = this.props;
       return (
@@ -24,7 +29,7 @@ class AppComponent extends React.Component {
               {
                 items.map((x, index) => {
                   return (<div className="col-12" key={x}>
-                    <JobComponent jobData={jobsEntities[x]} />
+                    <JobComponent jobData={jobsEntities[x]} showUserPerfil={this.showUserPerfil} />
                   </div>);
                 })
               }

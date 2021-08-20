@@ -10,9 +10,18 @@ class JobComponent extends React.Component {
     componentDidMount(){
         
     }
+
+    showUserPerfil(id){
+      return (e) => {
+          this.props.showUserPerfil(id);
+      }
+    }
+
     render(){
+        
         const compesationIsVisible = this.props.jobData.compensation.visible;
         const deadlineIsDate = (this.props.jobData.deadline != null) ? true:false;
+        const locationHasData = (this.props.jobData.locations.length > 0) ? true : false;
         return (<div className="job-component border border-1 rounded bg-light p-2 m-2">
             <div className="col-sm-12">
                 <div className="row">
@@ -26,8 +35,18 @@ class JobComponent extends React.Component {
                              
                              </div>  
                         <h5 className="job-headline-title mt-1 mb-1">{this.props.jobData.objective}</h5>
-                        <div className="job-headline-subtitle mt-1 mb-1"><span>{this.props.jobData.type}</span> <span>{this.props.jobData.locations[0]}</span></div>
-                        <h6 className="mt-1 mb-1"><i className="bi bi-building"></i> {this.props.jobData.organizations[0].name}</h6>
+                        <div className="job-headline-subtitle mt-1 mb-1 row justify-content-start">
+                            <div className="col-auto">
+                                <span>{this.props.jobData.type}</span>
+                            </div>
+                            <div className="col-auto">
+                             {locationHasData &&  <span><strong>in </strong> {this.props.jobData.locations[0]}</span> }
+                            </div>
+                            <div className="col-auto">
+                            <h6 className="mt-1 mb-1"> (<i className="bi bi-building"></i> {this.props.jobData.organizations[0].name})</h6>
+                                </div>
+                        </div>
+                        
                         {compesationIsVisible &&
                             <h5><span>{this.props.jobData.compensation.data.currency}</span> <span>{this.props.jobData.compensation.data.maxAmount}</span> <span>{this.props.jobData.compensation.data.periodicity}</span></h5>    
                         }
@@ -41,17 +60,25 @@ class JobComponent extends React.Component {
                             </div>
                         </div>
                         <div className="row mt-1 mb-1">
-                            <div className="col">
+                            <div className="col job-team-title">
                                 Team members
                             </div>
                         </div>
-                        <div className="row mt-1 mb-1"><div className="col">
+                        <div className="row mt-1 mb-1">
+                            
                             {
                                 this.props.jobData.members.map((member, index) => {
-                                    return (<span key={index}> {member.name} </span>);
+                                    if(member.picture != null){
+                                        return (<div className="col-auto p-1m-1" onClick={this.showUserPerfil(member.username)}>
+                                            <span  key={index} >
+                                            <img className="job-member-picture rounded-circle border border-success" src={member.picture} alt={member.name} title={member.name}></img>
+                                            <span>{member.name}</span>
+                                         </span> </div>);
+                                    }
                                 })
                             }
-                            </div></div>
+                            
+                            </div>
                     </div>
                 </div>
             </div>

@@ -5,10 +5,13 @@
     --gray-color-tranparent: rgba(240, 240, 240, 0.5);
 }
 
-.job-component {
-    
+.job-member-picture {
+    width: 25px;
+    height: 25px;
 }
-
+.job-team-title{
+    font-weight: bold;
+}
 .job-status {
     background: #C1DF1F;
     font-weight: bold;
