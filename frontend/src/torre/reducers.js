@@ -4,6 +4,7 @@
 
 import { combineReducers } from 'redux';
 import {TYPE} from './constants';
+import networkReducer from '../common/reducers';
 
 const jobsState = {
     items: [],
@@ -74,4 +75,4 @@ export const uiReducer = (state = uiState, action) => {
     }
 }
 
-export default combineReducers({jobReducer, userReducer, uiReducer});
+export default combineReducers({jobReducer, userReducer, uiReducer, networkReducer});

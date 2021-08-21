@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {dateDiffToday} from '../../common/helpers';
+import PersonalTraitComponent from './PersonalTraits.react';
 
 class UserComponent extends React.Component{
     constructor(props){
@@ -9,54 +10,65 @@ class UserComponent extends React.Component{
     }
 
     render(){
-        const { person } = this.props.user;
+        const { person, interests,  personalityTraitsResults} = this.props.user;
+        const imageStyle = {
+            backgroundImage: 'url(' + person.picture +')'
+        }
         return (
-            <div className="border border-1 rounded bg-light p-2 m-2">
-                <div className="row">
+            <div className="p-2 m-2">
+                <div className="row p-2 bg-light border border-1 rounded">
                     <div className="col">
-                        <div className="row">
-                            <div className="col">
-                                <img src={person.pictureThumbnail} alt={person.name} title={person.name} ></img>
+                        <div  className="row cover-page  justify-content-center position-relative"  >
+                            <div className="col-auto">
+                                <img className="lazy rounded-circle" src={person.pictureThumbnail} alt={person.name} title={person.name} ></img>    
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row bg-white">
                     <div className="col">
-                        {person.name}
+                       <span>
+                           <h4 className="user-name">{person.name}</h4>
+                           <span>({person.location.name})</span>
+                           </span>
                     </div>
                 </div>
+                
                 <div className="row">
                     <div className="col">
-                        {person.location.name}
+                        <span className="user-summary-bio">{person.professionalHeadline}</span>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col">
-                        {person.summaryOfBio}
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <div className="row">
-                            <div className="col">
-                                Interested in
-                            </div>
-                        </div>
-                        <div className="row">
-                            
-                        </div>
+                <div className="row border-top rounded">
+                    <div className="col pt-2">
+                         {person.summaryOfBio}
                     </div>
                 </div>
                 <div className="row">
                     <div className="col">
                         <div className="row">
                             <div className="col">
-                               Professional Culture
+                               <strong> Interested in </strong>
                             </div>
                         </div>
                         <div className="row">
-                            
+                            {
+                                interests.map((interest) => {
+                                    return <div className="col p-2 m-1 bg-light">{interest.name}</div>
+                                })
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <div className="row">
+                            <div className="col">
+                            <strong>Personal Traits </strong>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <PersonalTraitComponent traits={personalityTraitsResults} />
                         </div>
                     </div>
                 </div>

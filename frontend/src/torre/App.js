@@ -40,7 +40,7 @@ class AppComponent extends React.Component {
               }
           </div>
             </div>
-            {userView && <div className="col-4">
+            {userView && <div className="col-4 border-start">
               <UserComponent user={user} />
               </div>}
           </div>

@@ -4,7 +4,25 @@
     --primary-color-rgba-tranparent: rgba(205, 220, 57, 0.3);
     --gray-color-tranparent: rgba(240, 240, 240, 0.5);
 }
-
+.image-blur{
+   filter: blur(8px);
+   -webkit-filter: blur(8px);
+   background-position:  center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-origin: content-box;
+   width: 100%;
+   position: absolute;
+   top:0;
+   left: 0;
+   height: 100%;
+}
+.user-name {
+    
+}
+.cover-page {
+    background-clip: content-box;
+}
 .job-member-picture {
     width: 25px;
     height: 25px;
