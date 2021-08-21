@@ -58,7 +58,12 @@ export default {
 					 };
 	},
 	flatGet(module){
-		return axios.get(module, GET_HEADERS);
+		return  (success, error) => { 
+			axios.get(module, GET_HEADERS)
+				.then(success)
+				.catch(error);
+		
+		};
 	},
 	parallel(requests){
 		return (success, error) => axios.all(requests)

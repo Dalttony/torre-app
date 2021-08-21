@@ -44,10 +44,17 @@ def search(request):
 		return JsonResponse({"error": 1 , "msg": str(e)})
 	
 @require_http_methods(["GET"])
-def users(request, name):
-	url_request = "https://torre.bio/api/bios/{username}".format(username=name)
+def users(request, username):
+	url_request = "https://torre.bio/api/bios/{username}".format(username=username)
 	r = requests.get(url_request)
- 
+	if not r:
+		return JsonResponse({"error":404, "msm": "Not found"})
+	try:
+		data = json.loads(r.text)
+		return JsonResponse({"data":data}, safe=False)
+	except TypeError as e:
+		return JsonResponse({"error": 1 , "msg": str(e)})
+
 @require_http_methods(["GET"])
 def jobs(request, id):
 	url_request = "https://torre.co/api/opportunities/{id}".format(id=id)

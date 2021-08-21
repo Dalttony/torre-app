@@ -6,6 +6,6 @@ export default {
 		return serverApi.postFlat('api/search/')(success, error);
 	},
 	user(username){
-			return serverApi.get('apy/user')({"name":username});
+			return serverApi.flatGet('api/users/'+username);
 	}
 }

@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes  from 'prop-types';
 import { connect } from 'react-redux'
 import JobComponent from './components/Job.react';
-import {loadJobs} from './actions';
+import UserComponent from './components/User.react';
+import {loadJobs, getUser} from './actions';
 import { ReactReduxContext } from 'react-redux'
 
 class AppComponent extends React.Component {
@@ -23,18 +24,27 @@ class AppComponent extends React.Component {
       dispatch(getUser(username));
     }
     render(){
-      const {items, jobsEntities} = this.props;
+      const {items, jobsEntities, userView, user} = this.props;
+
       return (
         <div className="container-fluid">
           <div className="row">
+            <div className={userView ? "col-8": "col-12"}>
+            <div className="row">
               {
                 items.map((x, index) => {
-                  return (<div className="col-12" key={x}>
-                    <JobComponent jobData={jobsEntities[x]} showUserPerfil={this.showUserPerfil} />
+                  return (<div className={"col-12"} key={x}>
+                    <JobComponent jobData={jobsEntities[x]} showUserPerfil={this.showUserPerfil.bind(this)} />
                   </div>);
                 })
               }
           </div>
+            </div>
+            {userView && <div className="col-4">
+              <UserComponent user={user} />
+              </div>}
+          </div>
+         
         </div>
       );
     }
@@ -43,8 +53,10 @@ class AppComponent extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   console.log(state);
   const { jobsEntities, items } = state.jobReducer;
+  const { userView } = state.uiReducer;
+  const { user } = state.userReducer;
   return {
-    jobsEntities, items 
+    jobsEntities, items, userView, user
   }
 }
 

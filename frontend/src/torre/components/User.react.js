@@ -9,30 +9,31 @@ class UserComponent extends React.Component{
     }
 
     render(){
+        const { person } = this.props.user;
         return (
-            <div className="container">
+            <div className="border border-1 rounded bg-light p-2 m-2">
                 <div className="row">
                     <div className="col">
                         <div className="row">
                             <div className="col">
-                                <img src={this.props.pictureThumbnail} alt={this.props.name} title={this.props.name} ></img>
+                                <img src={person.pictureThumbnail} alt={person.name} title={person.name} ></img>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col">
-                        {this.props.name}
+                        {person.name}
                     </div>
                 </div>
                 <div className="row">
                     <div className="col">
-                        {this.props.location.name}
+                        {person.location.name}
                     </div>
                 </div>
                 <div className="row">
                     <div className="col">
-                        {this.props.summaryOfBio}
+                        {person.summaryOfBio}
                     </div>
                 </div>
                 <div className="row">
@@ -63,3 +64,5 @@ class UserComponent extends React.Component{
         );
     }
 }
+
+export default UserComponent;

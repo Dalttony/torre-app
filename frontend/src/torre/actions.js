@@ -12,7 +12,7 @@ export const loadJobs = () => {
         dispatch(sendRequest());
 
         service.loadJobs((response)=>{
-            if (response.status = 200){
+            if (response.status == 200){
                 dispatch({type:TYPE.SET_DATA_RESULT, payload:{jobs:response.data.data.results}});
             }else{
                 //something wrong happen
@@ -31,6 +31,9 @@ export const getUser = (username) => {
 
         service.user(username)( (response)=>{
             console.log(response);
+             if(response.status == 200){
+                 dispatch({type:TYPE.SET_USER_DATA_RESULT, payload:{user:response.data.data}});
+             }
         },
         (error) =>{
             console.log(error);
