@@ -14,9 +14,12 @@ export const loadJobs = () => {
         service.loadJobs((response)=>{
             if (response.status == 200){
                 dispatch({type:TYPE.SET_DATA_RESULT, payload:{jobs:response.data.data.results}});
+                dispatch(dismissRequest());
+                dispatch(successRequest());
             }else{
                 //something wrong happen
             }
+           
         },
         (error) =>{
             console.log(error);
@@ -33,6 +36,7 @@ export const getUser = (username) => {
             console.log(response);
              if(response.status == 200){
                  dispatch({type:TYPE.SET_USER_DATA_RESULT, payload:{user:response.data.data}});
+                 dispatch(dismissRequest());
              }
         },
         (error) =>{

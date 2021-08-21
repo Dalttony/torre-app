@@ -7,7 +7,8 @@ class PersonalTraitComponent extends React.Component{
     }
 
     componentDidMount(){
-        const { groups, analyses } = this.props.traits;
+        console.log(this.props);
+        const { groups, analyses } = this.props.personalTrait;
         const traitLabels = groups.map((group) => group.id);        
         const torreGeneralAnalysis = groups.map((trait) => trait.median);
         let personGeneralAnalysis = [];
@@ -26,8 +27,7 @@ class PersonalTraitComponent extends React.Component{
                 }
             });
         }
-      console.log(personGeneralAnalysis);
-      console.log(torreGeneralAnalysis);
+      
         var myChart = new Chart(document.getElementById("trait").getContext("2d"), {
             type: 'radar',
             data: {

@@ -10,7 +10,8 @@ class UserComponent extends React.Component{
     }
 
     render(){
-        const { person, interests,  personalityTraitsResults} = this.props.user;
+        const { person, interests} = this.props.user;
+        const { personalTrait } = this.props;
         const imageStyle = {
             backgroundImage: 'url(' + person.picture +')'
         }
@@ -68,7 +69,7 @@ class UserComponent extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <PersonalTraitComponent traits={personalityTraitsResults} />
+                            <PersonalTraitComponent personalTrait={personalTrait} />
                         </div>
                     </div>
                 </div>

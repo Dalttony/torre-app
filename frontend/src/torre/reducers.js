@@ -12,7 +12,8 @@ const jobsState = {
 };
 
 const userState = {
-    user: {}
+    user: {},
+    userPersonalTrait: []
 }
 const uiState = {
     userView: false
@@ -42,7 +43,8 @@ export const jobReducer = (state = jobsState, action) =>{
 
 export const userReducer = (state = userState, action) => {
     if (typeof state === 'undefined'){
-        state = {data:[]}
+        state = {user: {},
+        userPersonalTrait: []}
     }
 
     switch(action.type){
@@ -50,6 +52,7 @@ export const userReducer = (state = userState, action) => {
             console.log("userReducer");
             return Object.assign({}, state,{
                 user: action.payload.user,
+                userPersonalTrait: action.payload.user.personalityTraitsResults
 			});
             break;
         default:

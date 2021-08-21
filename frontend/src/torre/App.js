@@ -8,6 +8,7 @@ import UserComponent from './components/User.react';
 import {loadJobs, getUser} from './actions';
 import { ReactReduxContext } from 'react-redux'
 
+
 class AppComponent extends React.Component {
     constructor(props){
       super(props)
@@ -24,10 +25,20 @@ class AppComponent extends React.Component {
       dispatch(getUser(username));
     }
     render(){
-      const {items, jobsEntities, userView, user} = this.props;
+      const {items, jobsEntities, userView, user, isFetching, userPersonalTrait} = this.props;
 
       return (
         <div className="container-fluid">
+
+          {isFetching && (
+              <div className="row p-4 justify-content-center">
+                <div className="col-auto">
+                  <div className="progress-app">
+                  </div>
+                  <h4>Cargando..</h4>
+                </div>
+              </div>
+            ) }
           <div className="row">
             <div className={userView ? "col-8": "col-12"}>
             <div className="row">
@@ -41,7 +52,7 @@ class AppComponent extends React.Component {
           </div>
             </div>
             {userView && <div className="col-4 border-start">
-              <UserComponent user={user} />
+              <UserComponent user={user} personalTrait={userPersonalTrait} />
               </div>}
           </div>
          
@@ -51,12 +62,21 @@ class AppComponent extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   const { jobsEntities, items } = state.jobReducer;
   const { userView } = state.uiReducer;
-  const { user } = state.userReducer;
+  const { user, userPersonalTrait } = state.userReducer;
+  const { isFetching, success, error, errorMessage, successMessage } = state.networkReducer;
   return {
-    jobsEntities, items, userView, user
+    jobsEntities, 
+    items, 
+    userView, 
+    user, 
+    isFetching, 
+    success, 
+    error, 
+    errorMessage, 
+    successMessage,
+    userPersonalTrait
   }
 }
 

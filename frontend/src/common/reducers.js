@@ -19,12 +19,18 @@
                  isFetching: action.fetchingState
              });
              break;
+        case networkState.FETCH_REQUEST_DISMISS:
+                return Object.assign({}, state, {
+                    isFetching: action.fetchingState
+                });
+                break;
          case networkState.FETCH_REQUEST_SUCCESS:
              return Object.assign({}, state, {
                  success: true,
                  successMessage: action.message
              });
              break;
+            
          case networkState.FETCH_REQUEST_FAILURE:
              return Object.assign({}, state, {
                  error: true,
