@@ -23,4 +23,18 @@ export const loadJobs = () => {
         }
         );
     }
-}
+};
+
+export const getUser = (username) => {
+    return (dispatch, getState) => {
+        dispatch(sendRequest());
+
+        service.user(username)( (response)=>{
+            console.log(response);
+        },
+        (error) =>{
+            console.log(error);
+        }
+        );
+    }
+};

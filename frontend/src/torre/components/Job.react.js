@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {dateDiffToday} from '../../common/helpers';
@@ -26,7 +26,7 @@ class JobComponent extends React.Component {
             <div className="col-sm-12">
                 <div className="row">
                     <div className="col-auto">
-                        <img className="job-organization-picture rounded-circle border border-success" src={this.props.jobData.organizations[0].picture} alt={this.props.jobData.organizations[0].name} title={this.props.jobData.organizations[0].name}></img>
+                        <img className="lazy job-organization-picture rounded-circle border border-success" src={this.props.jobData.organizations[0].picture} alt={this.props.jobData.organizations[0].name} title={this.props.jobData.organizations[0].name}></img>
                         </div>
                     <div className="col">
                         <div className="job-headline-status">
@@ -71,8 +71,8 @@ class JobComponent extends React.Component {
                                     if(member.picture != null){
                                         return (<div className="col-auto p-1m-1" onClick={this.showUserPerfil(member.username)}>
                                             <span  key={index} >
-                                            <img className="job-member-picture rounded-circle border border-success" src={member.picture} alt={member.name} title={member.name}></img>
-                                            <span>{member.name}</span>
+                                            <img className="lazy job-member-picture rounded-circle border border-success" src={member.picture} srcset={member.picture} alt={member.name} title={member.name}></img> 
+                                            <span className="ml-1" >{member.name}</span>
                                          </span> </div>);
                                     }
                                 })

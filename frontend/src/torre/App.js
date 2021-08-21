@@ -17,9 +17,10 @@ class AppComponent extends React.Component {
 			dispatch(loadJobs());
     }
 
-    showUserPerfil(id){
+    showUserPerfil(username){
       
-      console.log(id);
+      const { dispatch } = this.props;
+      dispatch(getUser(username));
     }
     render(){
       const {items, jobsEntities} = this.props;
