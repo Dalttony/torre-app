@@ -26,6 +26,13 @@
     border-bottom:5px dotted black;
     animation: progress-circle 5s linear 2s infinite alternate;
 }
+.job-member-picture, .job-member-picture + span {
+    cursor: pointer;
+}
+
+.job-member-picture:hover, .job-member-picture:hover + span {
+    font-weight: bold;
+}
 
 @keyframes progress-circle {
     0%   { -webkit-transform: rotate(10deg);

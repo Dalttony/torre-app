@@ -4,13 +4,12 @@ import './index.css';
 import App from './torre/App';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import logger from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux';
 import reportWebVitals from './reportWebVitals';
 import appReducer from './torre/reducers';
 
 const store = createStore(appReducer, applyMiddleware(
-	thunkMiddleware, logger
+	thunkMiddleware
 	));
 
 ReactDOM.render(

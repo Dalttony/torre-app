@@ -4,31 +4,42 @@ import Chart from 'chart.js/auto';
 class PersonalTraitComponent extends React.Component{
     constructor(props){
         super(props)
+        this.myChart;
     }
 
     componentDidMount(){
-        console.log(this.props);
-        const { groups, analyses } = this.props.personalTrait;
-        const traitLabels = groups.map((group) => group.id);        
-        const torreGeneralAnalysis = groups.map((trait) => trait.median);
-        let personGeneralAnalysis = [];
-        let i = 0;
-        let seguirBuscando = true;
-        while (seguirBuscando){
-      
-            analyses.forEach((group, index) => {
-                if(traitLabels.indexOf(group.groupId) == i){
-                    console.log (i, group.analysis);
-                    personGeneralAnalysis.push(group.analysis);
-                    i++;
-                    if ( traitLabels.length == personGeneralAnalysis.length || i > 4){
-                        seguirBuscando = false;
-                    }
-                }
-            });
+        console.log("mounted");
+        
+    }
+    componentDidUpdate(){
+        if (this.myChart != null){
+            this.myChart.destroy();
         }
-      
-        var myChart = new Chart(document.getElementById("trait").getContext("2d"), {
+
+        let traitLabels = ["emotional","extraversion","openess","conscientiousness","honesty","agreeableness"];
+        let personGeneralAnalysis = [];
+        let torreGeneralAnalysis = [];
+        if(this.props.personalTrait != null){
+            traitLabels = [];
+            const { groups, analyses } = this.props.personalTrait;
+            traitLabels = groups.map((group) => group.id);        
+            torreGeneralAnalysis = groups.map((trait) => trait.median);
+            let i = 0;
+            let seguirBuscando = true;
+            while (seguirBuscando){
+          
+                analyses.forEach((group, index) => {
+                    if(traitLabels.indexOf(group.groupId) == i){
+                        personGeneralAnalysis.push(group.analysis);
+                        i++;
+                        if ( traitLabels.length == personGeneralAnalysis.length || i > 4){
+                            seguirBuscando = false;
+                        }
+                    }
+                });
+            }
+        }{}        
+        this.myChart = new Chart(document.getElementById("trait").getContext("2d"), {
             type: 'radar',
             data: {
                 labels: traitLabels,
@@ -65,7 +76,7 @@ class PersonalTraitComponent extends React.Component{
     }
     render(){
             return (
-                    <div><canvas id="trait" width="400" height="400"></canvas></div>
+                    <div id={this.props.userName}><canvas id="trait" width="400" height="400"></canvas></div>
                 );
     }
 }   

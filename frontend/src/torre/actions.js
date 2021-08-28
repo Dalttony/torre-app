@@ -13,16 +13,21 @@ export const loadJobs = () => {
 
         service.loadJobs((response)=>{
             if (response.status == 200){
-                dispatch({type:TYPE.SET_DATA_RESULT, payload:{jobs:response.data.data.results}});
-                dispatch(dismissRequest());
-                dispatch(successRequest());
+                if('error' in response.data){
+                    dispatch(failureRequest());
+                 }else{
+                    dispatch({type:TYPE.SET_DATA_RESULT, payload:{jobs:response.data.data.results}});
+                    dispatch(successRequest());
+                 }
+                 dispatch(dismissRequest());
             }else{
-                //something wrong happen
+                dispatch(failureRequest());
             }
            
         },
         (error) =>{
-            console.log(error);
+            dispatch(dismissRequest());
+            dispatch(failureRequest());
         }
         );
     }
@@ -31,12 +36,17 @@ export const loadJobs = () => {
 export const getUser = (username) => {
     return (dispatch, getState) => {
         dispatch(sendRequest());
-
         service.user(username)( (response)=>{
-            console.log(response);
              if(response.status == 200){
-                 dispatch({type:TYPE.SET_USER_DATA_RESULT, payload:{user:response.data.data}});
+                 if('error' in response.data){
+                    dispatch(failureRequest());
+                 }else{
+                    dispatch({type:TYPE.SET_USER_DATA_RESULT, payload:{user:response.data.data}});
+                    dispatch(successRequest());
+                 }
                  dispatch(dismissRequest());
+             }else{
+                dispatch(failureRequest());
              }
         },
         (error) =>{

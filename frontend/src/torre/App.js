@@ -1,12 +1,10 @@
 //import logo from './logo.svg';
-import './App.css';
 import React from 'react';
 import PropTypes  from 'prop-types';
 import { connect } from 'react-redux'
 import JobComponent from './components/Job.react';
 import UserComponent from './components/User.react';
 import {loadJobs, getUser} from './actions';
-import { ReactReduxContext } from 'react-redux'
 
 
 class AppComponent extends React.Component {
@@ -25,7 +23,7 @@ class AppComponent extends React.Component {
       dispatch(getUser(username));
     }
     render(){
-      const {items, jobsEntities, userView, user, isFetching, userPersonalTrait} = this.props;
+      const {items, error, jobsEntities, userView, user, isFetching, userPersonalTrait} = this.props;
 
       return (
         <div className="container-fluid">
@@ -35,17 +33,32 @@ class AppComponent extends React.Component {
                 <div className="col-auto">
                   <div className="progress-app">
                   </div>
-                  <h4>Cargando..</h4>
+                  <h4>Loading..</h4>
                 </div>
               </div>
             ) }
+          {error && (<div className="row p-4 justify-content-center" >
+              <div className="col-auto">
+              <div className="toast show" style={{autohide: "false"}} role="alert" aria-live="assertive" aria-atomic="true">
+                <div className="toast-header">
+                  <strong className="me-auto">Torre app error</strong>
+                  <small>Status</small>
+                  <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div className="toast-body">
+                  No response, you should try later.
+                </div>
+              </div>
+                 </div>
+            </div>)
+            }
           <div className="row">
             <div className={userView ? "col-8": "col-12"}>
             <div className="row">
               {
                 items.map((x, index) => {
                   return (<div className={"col-12"} key={x}>
-                    <JobComponent jobData={jobsEntities[x]} showUserPerfil={this.showUserPerfil.bind(this)} />
+                    <JobComponent jobData={jobsEntities[x]} key={"job-"+x} showUserPerfil={this.showUserPerfil.bind(this)} />
                   </div>);
                 })
               }

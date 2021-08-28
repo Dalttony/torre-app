@@ -3,7 +3,7 @@
  * the only way for interacting with the app by shifting the state
  */
 
- import { networkState, view, form } from "./constants";
+ import { networkState, view } from "./constants";
 
 
  export const sendRequest = () => {

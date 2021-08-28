@@ -69,8 +69,8 @@ class JobComponent extends React.Component {
                             {
                                 this.props.jobData.members.map((member, index) => {
                                     if(member.picture != null){
-                                        return (<div className="col-auto p-1m-1" onClick={this.showUserPerfil(member.username)}>
-                                            <span  key={index} >
+                                        return (<div key={index+"s"} className="col-auto p-1m-1" onClick={this.showUserPerfil(member.username)}>
+                                            <span  key={index+"x"} >
                                             <img className="lazy job-member-picture rounded-circle border border-success mr-1" src={member.picture} srcSet={member.picture} alt={member.name} title={member.name}></img> 
                                             <span className="m-1" >{member.name}</span>
                                          </span> </div>);

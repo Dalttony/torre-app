@@ -69,7 +69,7 @@ class UserComponent extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <PersonalTraitComponent personalTrait={personalTrait} />
+                            <PersonalTraitComponent personalTrait={personalTrait} userName={person.name} />
                         </div>
                     </div>
                 </div>
