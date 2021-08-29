@@ -1,4 +1,5 @@
 import axios from 'axios';
+axios.defaults.baseURL = window.location.protocol+"//"+window.location.hostname;
 if(document.getElementsByName("csrfmiddlewaretoken") != undefined){
 	//	axios.defaults.headers.post['X-CSRFToken'] = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 }
@@ -11,10 +12,11 @@ const POST_HEADERS = {
 		"X-CSRFToken": "",
 	},
 	credentials: "include"
+	
 }
 
 const GET_HEADERS = {
-	method: "GET",
+	method: "GET", 
 	headers: {
 		"Accept": "application/json",
 		"Content-Type":"application/json",

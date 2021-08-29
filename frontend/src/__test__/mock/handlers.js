@@ -14,11 +14,14 @@ export const handlers = [
                 size: 0
             }
         }; 
-        return (
-            ctx.status(200)
+        return res(
+            ctx.status(200),
+            ctx.json(data)
         )
     }),
     rest.get("/api/users/:username",  (req, res, ctx) =>{
-        
+        return res(
+            ctx.status(200)
+        )
     })
 ]

@@ -41,7 +41,8 @@
     },
     "moduleNameMapper":{
       "^.+\\.css$": "<rootDir>/src/__test__/cssMock.js", "//.module.css$": "identity-obj-proxy"
-    }
+    },
+    "testEnvironment": "jest-environment-jsdom"
   },
   "eslintConfig": {
     "extends": [

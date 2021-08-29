@@ -13,19 +13,22 @@ export const loadJobs = () => {
 
         service.loadJobs((response)=>{
             if (response.status == 200){
+                dispatch(dismissRequest());
                 if('error' in response.data){
                     dispatch(failureRequest());
                  }else{
                     dispatch({type:TYPE.SET_DATA_RESULT, payload:{jobs:response.data.data.results}});
                     dispatch(successRequest());
                  }
-                 dispatch(dismissRequest());
+                 
             }else{
                 dispatch(failureRequest());
             }
            
         },
         (error) =>{
+            console.log(error.message);
+            console.log(error.toJSON());
             dispatch(dismissRequest());
             dispatch(failureRequest());
         }
