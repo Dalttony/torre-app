@@ -18,68 +18,107 @@
    height: 100%;
 }
 
-.progress-app {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    border-top:5px dotted black;
-    border-bottom:5px dotted black;
-    animation: progress-circle 5s linear 2s infinite alternate;
-}
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 .job-member-picture, .job-member-picture + span {
     cursor: pointer;
 }
 
-.job-member-picture:hover, .job-member-picture:hover + span {
+.job-member-picture:hover,.job-member-picture:hover + span, .job-member-picture + span:hover {
     font-weight: bold;
 }
 
-@keyframes progress-circle {
-    0%   { -webkit-transform: rotate(10deg);
-        -o-transform:rotate(10deg);
-        transform: rotate(10deg);}
-    25%  {webkit-transform: rotate(90deg);
-        -o-transform:rotate(90deg);
-        transform: rotate(90deg);}
-    50%  {webkit-transform: rotate(180deg);
-        -o-transform:rotate(180deg);
-        transform: rotate(180deg);}
-    100% {webkit-transform: rotate(270deg);
-        -o-transform:rotate(270deg);
-        transform: rotate(270deg);}
+.progress-app {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.progress-app div {
+    position: absolute;
+    border: 4px solid rgb(24, 1, 1);
+    opacity: 1;
+    border-radius: 50%;
+    animation: progress-app 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.progress-app div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+  @keyframes progress-app {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
   }
 
-
-@-webkit-keyframes  progress-circle{
-    0%   { -webkit-transform: rotate(10deg);
-        -o-transform:rotate(10deg);
-        transform: rotate(10deg);}
-    25%  {webkit-transform: rotate(90deg);
-        -o-transform:rotate(90deg);
-        transform: rotate(90deg);}
-    50%  {webkit-transform: rotate(180deg);
-        -o-transform:rotate(180deg);
-        transform: rotate(180deg);}
-    100% {webkit-transform: rotate(270deg);
-        -o-transform:rotate(270deg);
-        transform: rotate(270deg);}
-}
-
-
-@-moz-keyframes progress-circle{
-    0%   { -webkit-transform: rotate(10deg);
-        -o-transform:rotate(10deg);
-        transform: rotate(10deg);}
-    25%  {webkit-transform: rotate(90deg);
-        -o-transform:rotate(90deg);
-        transform: rotate(90deg);}
-    50%  {webkit-transform: rotate(180deg);
-        -o-transform:rotate(180deg);
-        transform: rotate(180deg);}
-    100% {webkit-transform: rotate(270deg);
-        -o-transform:rotate(270deg);
-        transform: rotate(270deg);}
-}
+@-webkit-keyframes progress-app {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+@-o-keyframes progress-app {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+@-moz-keyframes progress-app {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+  
 
 .cover-page {
     background-clip: content-box;

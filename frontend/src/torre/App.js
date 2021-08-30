@@ -4,8 +4,9 @@ import PropTypes  from 'prop-types';
 import { connect } from 'react-redux'
 import JobComponent from './components/Job.react';
 import UserComponent from './components/User.react';
+import UserComponentSM from './components/UserSM.react';
 import {loadJobs, getUser} from './actions';
-
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 class AppComponent extends React.Component {
     constructor(props){
@@ -27,11 +28,10 @@ class AppComponent extends React.Component {
 
       return (
         <div className="container-fluid">
-
           {isFetching && (
               <div className="row p-4 justify-content-center">
                 <div className="col-auto">
-                  <div className="progress-app">
+                  <div className="progress-app"><div></div><div></div>
                   </div>
                   <h4>Loading..</h4>
                 </div>
@@ -53,20 +53,46 @@ class AppComponent extends React.Component {
             </div>)
             }
           <div className="row">
-            <div className={userView ? "col-8": "col-12"}>
-            <div className="row">
-              {
-                items.map((x, index) => {
-                  return (<div className={"col-12 job-data"} key={x}>
-                    <JobComponent jobData={jobsEntities[x]} key={"job-"+x} showUserPerfil={this.showUserPerfil.bind(this)} />
-                  </div>);
-                })
-              }
-          </div>
+
+            <div className={userView ? "col-md-8 col-sm-12": "col-12"}>
+                <div className="row">
+                  {
+                    items.map((x, index) => {
+                      return (<div className={"col-12 job-data"} key={x}>
+                        <JobComponent jobData={jobsEntities[x]} key={"job-"+x} showUserPerfil={this.showUserPerfil.bind(this)} />
+                      </div>);
+                    })
+                  }
+              </div>
             </div>
-            {userView && <div className="col-4 border-start">
-              <UserComponent user={user} personalTrait={userPersonalTrait} />
-              </div>}
+            {userView && (
+                
+                
+                <div className="col-md-4  border-start">
+                    <div className="d-sm-flex d-md-none">
+                  <div className="container-fluid">
+                    <div className="row">
+                      <div className="col modal fade show" tabIndex="-1"  style={{display: "block"}} aria-hidden="true" >
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                        
+                            <div className="modal-body">
+                            <UserComponentSM user={user} personalTrait={userPersonalTrait} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                </div>
+                     <div className="d-none d-md-flex">
+                     <UserComponent user={user} personalTrait={userPersonalTrait} />
+                      </div>  
+                    
+                </div>
+              
+              )
+              }
           </div>
          
         </div>

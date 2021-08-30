@@ -2,9 +2,9 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {dateDiffToday} from '../../common/helpers';
-import PersonalTraitComponent from './PersonalTraits.react';
+import PersonalTraitComponentSM from './PersonalTraitsSM.react';
 
-class UserComponent extends React.Component{
+class UserComponentSM extends React.Component{
     constructor(props){
         super(props);
     }
@@ -16,7 +16,12 @@ class UserComponent extends React.Component{
             backgroundImage: 'url(' + person.picture +')'
         }
         return (
-            <div className="p-2 m-2">                   
+            <div className="p-2 m-2">
+                <div className="d-md-none d-sm-flex">
+
+                </div>
+                <div className="d-sm-none d-md-flex">
+                    
                 <div className="row p-2 bg-light border border-1 rounded">
                     <div className="col">
                         <div  className="row cover-page  justify-content-center position-relative"  >
@@ -69,15 +74,15 @@ class UserComponent extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <PersonalTraitComponent personalTrait={personalTrait} userName={person.name} />
+                            <PersonalTraitComponentSM personalTrait={personalTrait} userName={person.name} />
                         </div>
                     </div>
                 </div>
-             
+                </div>
                 
             </div>
         );
     }
 }
 
-export default UserComponent;
+export default UserComponentSM;

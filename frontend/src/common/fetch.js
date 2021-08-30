@@ -1,8 +1,8 @@
 import axios from 'axios';
-axios.defaults.baseURL = window.location.protocol+"//"+window.location.hostname;
-if(document.getElementsByName("csrfmiddlewaretoken") != undefined){
-	//	axios.defaults.headers.post['X-CSRFToken'] = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-}
+//axios.defaults.baseURL = window.location.protocol+"//"+window.location.hostname;
+
+axios.defaults.headers.post['X-CSRFToken'] = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+
 const POST_HEADERS = {
 	method: "POST",
 	headers: {
@@ -36,9 +36,9 @@ export default {
 	},
 	postFlat(module){
 		return (success, error) => {	
-					if( document.getElementsByName("csrfmiddlewaretoken") != null){
-						//POST_HEADERS["headers"]["X-CSRFToken"] = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-					}
+					
+					POST_HEADERS["headers"]["X-CSRFToken"] = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+				
 					axios.post(module, POST_HEADERS)
 						 .then(success)
 						 .catch(error);

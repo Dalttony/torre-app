@@ -14,7 +14,6 @@ def search(request):
 	#verify status of request 
 	if not r:
 		return JsonResponse({"error":404, "msm": "Not found"})
-
 	try:
 		data = json.loads(r.text)
 		locations = []
