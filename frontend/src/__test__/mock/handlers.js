@@ -1513,7 +1513,7 @@ export const handlers = [
             ctx.status(200),
             ctx.json({})
         )
-        return responseNoFound;
+        return responseOk;
     }),
     rest.get("/api/users/:username",  (req, res, ctx) =>{
         return res(

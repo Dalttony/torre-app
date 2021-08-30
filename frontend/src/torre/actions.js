@@ -13,14 +13,14 @@ export const loadJobs = () => {
 
         service.loadJobs((response)=>{
             if (response.status == 200){
-                dispatch(dismissRequest());
+                
                 if('error' in response.data){
                     dispatch(failureRequest());
                  }else{
                     dispatch({type:TYPE.SET_DATA_RESULT, payload:{jobs:response.data.data.results}});
                     dispatch(successRequest());
                  }
-                 
+                 dispatch(dismissRequest());
             }else{
                 dispatch(failureRequest());
             }
@@ -51,7 +51,8 @@ export const getUser = (username) => {
              }
         },
         (error) =>{
-            console.log(error);
+            dispatch(dismissRequest());
+            dispatch(failureRequest());
         }
         );
     }

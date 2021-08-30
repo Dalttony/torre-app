@@ -57,7 +57,7 @@ class AppComponent extends React.Component {
             <div className="row">
               {
                 items.map((x, index) => {
-                  return (<div className={"col-12"} key={x}>
+                  return (<div className={"col-12 job-data"} key={x}>
                     <JobComponent jobData={jobsEntities[x]} key={"job-"+x} showUserPerfil={this.showUserPerfil.bind(this)} />
                   </div>);
                 })
