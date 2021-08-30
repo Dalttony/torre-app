@@ -27,8 +27,6 @@ export const loadJobs = () => {
            
         },
         (error) =>{
-            console.log(error.message);
-            console.log(error.toJSON());
             dispatch(dismissRequest());
             dispatch(failureRequest());
         }
